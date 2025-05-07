@@ -1,4 +1,15 @@
+# working env
+
 .idea/
+.venv/
+
+# dbt
+
 target/
 dbt_packages/
 logs/
+.user.yml
+
+# datalake
+
+datalake/bronze/*.parquet

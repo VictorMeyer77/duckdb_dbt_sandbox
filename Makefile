@@ -16,6 +16,14 @@ show:             ## Show the current environment.
 	@$(ENV_PREFIX)python -V
 	@$(ENV_PREFIX)python -m site
 
+.PHONY: fmt
+fmt:              ## Format sql files using sqlfluff
+	@sqlfluff fix -f
+
+.PHONY: lint
+lint:             ## Run linter using sqlfluff
+	@sqlfluff lint
+
 .PHONY: install
 install:          ## Install the project in dev mode.
 	@echo "Don't forget to run 'make virtualenv' if you got errors."
@@ -25,6 +33,8 @@ install:          ## Install the project in dev mode.
 
 .PHONY: clean
 clean:            ## Clean unused files.
+	@dbt clean
+	@rm datalake/bronze/*.parquet
 	@rm -rf __pycache__
 	@rm -rf .cache
 	@rm -rf .pytest_cache

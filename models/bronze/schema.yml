@@ -1,0 +1,33 @@
+
+version: 2
+
+models:
+
+  - name: brz_fact_process
+    description: "Bronze layer of fact process table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+        tests:
+          - not_null
+      - name: started_at
+        description: "Timestamp when process started"
+      - name: created_at
+        description: "Timestamp when 'ps' command was executed"
+      - name: inserted_at
+        description: "Timestamp when row was ingested"
+      - name: pcpu
+        description: "CPU used by the process"
+      - name: pmem
+        description: "Memory used by the process"
+
+  - name: brz_dim_process
+    description: "Bronze layer of dim process table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+        tests:
+          - not_null
+          - unique
+      - name: started_at
+        description: "Timestamp when process started"

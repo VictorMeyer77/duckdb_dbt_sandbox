@@ -1,0 +1,11 @@
+duckdb_dbt_sandbox:
+  outputs:
+    dev:
+      type: duckdb
+      threads: 24
+
+    prod:
+      type: duckdb
+      threads: 24
+
+  target: dev

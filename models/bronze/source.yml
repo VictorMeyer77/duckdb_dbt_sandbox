@@ -1,0 +1,7 @@
+sources:
+  - name: raw_fact_process
+    description: Raw process parquet file
+    meta:
+      external_location: "datalake/raw/fact_process.parquet"
+    tables:
+      - name: brz_fact_process
