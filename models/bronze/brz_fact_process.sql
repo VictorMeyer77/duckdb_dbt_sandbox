@@ -1,12 +1,15 @@
 {{
-    config(materialized="external",
-    location="datalake/bronze/brz_fact_process.parquet")
+    config(
+        materialized="external",
+        location="datalake/bronze/fact_process/" ~ run_started_at.strftime("%Y-%m-%d") ~ ".parquet",
+        format="parquet",
+    )
 }}
 
-with raw_process as (
+WITH raw_process AS (
 
-    select * from {{ source("raw_fact_process", "brz_fact_process") }}
+    select * from {{ source("raw", "fact_process") }}
 
 )
 
-select * from raw_process
+SELECT * FROM raw_process

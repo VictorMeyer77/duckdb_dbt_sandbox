@@ -1,15 +1,8 @@
-Welcome to your new dbt project!
+# duckdb_dbt_sandbox
 
-### Using the starter project
+## TODO
 
-Try running the following commands:
-- dbt run
-- dbt test
-
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+[ ] Work in a Azure Blob Storage
+[ ] Add CSV sources
+[ ] Add Sqllite source
+[ ] Add PostgresSQL source

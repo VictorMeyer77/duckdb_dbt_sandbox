@@ -1,6 +1,9 @@
 {{
-    config(materialized="external",
-    location="datalake/bronze/brz_dim_process.parquet")
+    config(
+        materialized="external",
+        location="datalake/bronze/dim_process/dim_process.parquet",
+        format="parquet"
+    )
 }}
 
 WITH ranked_processes AS (

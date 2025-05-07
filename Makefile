@@ -34,7 +34,7 @@ install:          ## Install the project in dev mode.
 .PHONY: clean
 clean:            ## Clean unused files.
 	@dbt clean
-	@rm datalake/bronze/*.parquet
+	@rm -rf datalake/bronze/*/*.parquet
 	@rm -rf __pycache__
 	@rm -rf .cache
 	@rm -rf .pytest_cache
@@ -57,3 +57,10 @@ virtualenv:       ## Create a virtual environment.
 	@./.venv/bin/pip install -U pip
 	@echo
 	@echo "!!! Please run 'source .venv/bin/activate' to enable the environment !!!"
+
+
+.PHONY: docs
+docs:             ## Build the documentation.
+	@echo "building documentation ..."
+	@dbt docs generate
+	@dbt docs serve

@@ -1,0 +1,8 @@
+sources:
+  - name: raw
+    description: Folder with raw data
+    tables:
+      - name: fact_process
+        description: Folder of fact process parquet
+        meta:
+          external_location: "datalake/raw/fact_process/*.parquet"
