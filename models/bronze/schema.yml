@@ -14,12 +14,12 @@ models:
         description: "Timestamp when process started"
       - name: created_at
         description: "Timestamp when 'ps' command was executed"
-      - name: inserted_at
-        description: "Timestamp when row was ingested"
       - name: pcpu
         description: "CPU used by the process"
       - name: pmem
         description: "Memory used by the process"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"
 
   - name: brz_dim_process
     description: "Bronze layer of dim process table"
@@ -27,7 +27,47 @@ models:
       - name: pid
         description: "Process identifier"
         tests:
-          - not_null
           - unique
       - name: started_at
         description: "Timestamp when process started"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"
+
+  - name: brz_fact_file_reg
+    description: "Bronze layer of fact file regular table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+        tests:
+          - not_null
+      - name: fd
+        description: "File descriptor"
+        tests:
+          - not_null
+      - name: node
+        description: "File node"
+        tests:
+          - not_null
+      - name: created_at
+        description: "Timestamp when 'ps' command was executed"
+      - name: size
+        description: "Node size"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"
+
+  - name: brz_dim_file_reg
+    description: "Bronze layer of dim file regular table"
+    tests:
+      - unique:
+          column_name: "(pid || fd || node)"
+    columns:
+      - name: pid
+        description: "Process identifier"
+      - name: fd
+        description: "File descriptor"
+      - name: node
+        description: "File node"
+      - name: started_at
+        description: "Timestamp when file opening started"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"

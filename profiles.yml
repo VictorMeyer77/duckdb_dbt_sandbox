@@ -2,10 +2,12 @@ duckdb_dbt_sandbox:
   outputs:
     dev:
       type: duckdb
+      path: test.duckdb
       threads: 24
 
     prod:
       type: duckdb
+      path: test.duckdb
       threads: 24
 
   target: dev

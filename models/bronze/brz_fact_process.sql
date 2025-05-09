@@ -8,8 +8,11 @@
 
 WITH raw_process AS (
 
-    select * from {{ source("raw", "fact_process") }}
+    SELECT * FROM {{ source("raw", "fact_process") }}
 
 )
 
-SELECT * FROM raw_process
+SELECT
+    *,
+    CURRENT_TIMESTAMP AS ingested_at
+FROM raw_process

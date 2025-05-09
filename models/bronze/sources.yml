@@ -6,3 +6,7 @@ sources:
         description: Folder of fact process parquet
         meta:
           external_location: "datalake/raw/fact_process/*.parquet"
+      - name: fact_file_reg
+        description: Folder of fact file regular parquet
+        meta:
+          external_location: "datalake/raw/fact_file_reg/*.parquet"

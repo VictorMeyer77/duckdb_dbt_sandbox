@@ -2,7 +2,7 @@
 
 ## TODO
 
-[ ] Work in a Azure Blob Storage
-[ ] Add CSV sources
-[ ] Add Sqllite source
-[ ] Add PostgresSQL source
+[ ] Work in a Azure Blob Storage  
+[ ] Add CSV seed  
+[ ] Docker  
+[ ] Staging

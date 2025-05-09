@@ -13,3 +13,4 @@ logs/
 # datalake
 
 datalake/bronze/*/*.parquet
+test.duckdb

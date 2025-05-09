@@ -35,6 +35,7 @@ install:          ## Install the project in dev mode.
 clean:            ## Clean unused files.
 	@dbt clean
 	@rm -rf datalake/bronze/*/*.parquet
+	@rm -rf test.duckdb
 	@rm -rf __pycache__
 	@rm -rf .cache
 	@rm -rf .pytest_cache
@@ -53,7 +54,7 @@ clean:            ## Clean unused files.
 virtualenv:       ## Create a virtual environment.
 	@echo "creating virtualenv ..."
 	@rm -rf .venv
-	@python3.12 -m venv .venv
+	@python3 -m venv .venv
 	@./.venv/bin/pip install -U pip
 	@echo
 	@echo "!!! Please run 'source .venv/bin/activate' to enable the environment !!!"
