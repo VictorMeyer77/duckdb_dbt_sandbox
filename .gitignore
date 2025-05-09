@@ -2,6 +2,7 @@
 
 .idea/
 .venv/
+requirements.txt
 
 # dbt
 
