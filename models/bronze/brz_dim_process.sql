@@ -17,4 +17,5 @@ SELECT
     pid,
     started_at,
     CURRENT_TIMESTAMP AS ingested_at
-FROM ranked_processes WHERE rank = 1
+FROM ranked_processes
+WHERE rank = 1

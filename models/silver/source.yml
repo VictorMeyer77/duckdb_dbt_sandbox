@@ -1,0 +1,12 @@
+sources:
+  - name: bronze
+    description: Folder with bronze data (used only for fact tables)
+    tables:
+      - name: fact_process
+        description: Folder of fact process parquet
+        meta:
+          external_location: "datalake/bronze/fact_process/*.parquet"
+      - name: fact_file_reg
+        description: Folder of fact file regular parquet
+        meta:
+          external_location: "datalake/bronze/fact_file_reg/*.parquet"

@@ -9,7 +9,9 @@
 WITH ranked_files AS (
     SELECT
         *,
-        ROW_NUMBER() OVER (PARTITION BY pid, fd, node ORDER BY created_at ASC) AS rank
+        ROW_NUMBER()
+            OVER (PARTITION BY pid, fd, node ORDER BY created_at ASC)
+        AS rank
     FROM {{ ref("brz_fact_file_reg") }}
 )
 
@@ -19,4 +21,5 @@ SELECT
     node,
     created_at AS started_at,
     CURRENT_TIMESTAMP AS ingested_at
-FROM ranked_files WHERE rank = 1
+FROM ranked_files
+WHERE rank = 1

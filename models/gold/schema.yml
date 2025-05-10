@@ -1,0 +1,12 @@
+
+version: 2
+
+models:
+
+  - name: gld_file_by_process
+    description: "Count open files by process"
+    columns:
+      - name: pid
+        description: "Process identifier"
+      - name: nb_files
+        description: "Open files by process"

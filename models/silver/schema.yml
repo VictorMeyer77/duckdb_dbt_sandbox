@@ -1,0 +1,60 @@
+
+version: 2
+
+models:
+
+  - name: svr_fact_process
+    description: "Silver layer of fact process table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+      - name: started_at
+        description: "Timestamp when process started"
+      - name: created_at
+        description: "Timestamp when 'ps' command was executed"
+      - name: pcpu
+        description: "CPU used by the process"
+      - name: pmem
+        description: "Memory used by the process"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"
+
+  - name: svr_dim_process
+    description: "Silver layer of dim process table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+      - name: started_at
+        description: "Timestamp when process started"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"
+
+  - name: svr_fact_file_reg
+    description: "Silver layer of fact file regular table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+      - name: fd
+        description: "File descriptor"
+      - name: node
+        description: "File node"
+      - name: created_at
+        description: "Timestamp when 'ps' command was executed"
+      - name: size
+        description: "Node size"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"
+
+  - name: svr_dim_file_reg
+    description: "Silver layer of dim file regular table"
+    columns:
+      - name: pid
+        description: "Process identifier"
+      - name: fd
+        description: "File descriptor"
+      - name: node
+        description: "File node"
+      - name: started_at
+        description: "Timestamp when file opening started"
+      - name: ingested_at
+        description: "Timestamp when row was ingested"

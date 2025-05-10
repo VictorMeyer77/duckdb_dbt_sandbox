@@ -5,4 +5,4 @@
 [ ] Work in a Azure Blob Storage  
 [ ] Add CSV seed  
 [ ] Docker  
-[ ] Staging
+[ ] Staging  

@@ -35,6 +35,8 @@ install:          ## Install the project in dev mode.
 clean:            ## Clean unused files.
 	@dbt clean
 	@rm -rf datalake/bronze/*/*.parquet
+	@rm -rf datalake/silver/*/*.parquet
+	@rm -rf datalake/gold/*/*.parquet
 	@rm -rf test.duckdb
 	@rm -rf __pycache__
 	@rm -rf .cache
