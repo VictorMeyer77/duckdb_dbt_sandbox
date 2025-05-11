@@ -3,11 +3,11 @@ duckdb_dbt_sandbox:
     dev:
       type: duckdb
       path: test.duckdb
-      threads: 24
+      threads: 1
 
     prod:
       type: duckdb
       path: test.duckdb
-      threads: 24
+      threads: 1
 
   target: dev

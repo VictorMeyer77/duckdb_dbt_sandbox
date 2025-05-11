@@ -7,11 +7,11 @@
 }}
 
 SELECT
-    proc.pid,
+    pro.pid,
     count(*) AS nb_files
-FROM {{ ref("svr_dim_process") }} AS proc
-LEFT JOIN {{ ref("svr_dim_file_reg") }} AS file
+FROM {{ ref("svr_dim_process") }} AS pro
+LEFT JOIN {{ ref("svr_dim_file_reg") }} AS file_reg
     ON
-        proc.pid = file.pid
-        AND proc.started_at <= file.started_at
-GROUP BY proc.pid
+        pro.pid = file_reg.pid
+        AND pro.started_at <= file_reg.started_at
+GROUP BY pro.pid

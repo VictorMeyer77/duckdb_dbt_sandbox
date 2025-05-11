@@ -1,5 +1,6 @@
 .ONESHELL:
 ENV_PREFIX=$(shell python -c "if __import__('pathlib').Path('.venv/bin/pip').exists(): print('.venv/bin/')")
+.SHELLFLAGS := -e -c # exit if error
 
 .PHONY: help
 help:             ## Show the help.
@@ -67,3 +68,13 @@ docs:             ## Build the documentation.
 	@echo "building documentation ..."
 	@dbt docs generate
 	@dbt docs serve
+
+.PHONY: run
+run:             ## Launch process.
+	@rm -rf test.duckdb
+	@echo "Process seeds"
+	@dbt seed
+	@echo "Execute and test bronze ..."
+	@dbt run --select models/bronze
+	@dbt test --select models/bronze
+	@dbt run
