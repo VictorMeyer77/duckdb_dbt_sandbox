@@ -15,4 +15,5 @@ logs/
 
 datalake/bronze/*/*.parquet
 datalake/silver/*/*.parquet
+datalake/gold/*/*.parquet
 test.duckdb

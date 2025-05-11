@@ -2,12 +2,12 @@ duckdb_dbt_sandbox:
   outputs:
     dev:
       type: duckdb
-      path: test.duckdb
+      path: datalake/dbt/test.duckdb
       threads: 1
 
     prod:
       type: duckdb
-      path: test.duckdb
+      path: datalake/dbt/test.duckdb
       threads: 1
 
   target: dev

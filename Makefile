@@ -18,26 +18,28 @@ show:             ## Show the current environment.
 	@$(ENV_PREFIX)python -m site
 
 .PHONY: fmt
-fmt:              ## Format sql files using sqlfluff
+fmt:              ## Format sql files using sqlfluff.
 	@sqlfluff fix -f
 
 .PHONY: lint
-lint:             ## Run linter using sqlfluff
+lint:             ## Run linter using sqlfluff.
 	@sqlfluff lint
 
 .PHONY: install
-install:          ## Install the project in dev mode.
+install:          ## Install the project.
 	@echo "Don't forget to run 'make virtualenv' if you got errors."
-	@./.venv/bin/pip install -r requirements-dev.txt
+	@pip install -r requirements-dev.txt
 	@pip-compile requirements.in
 	$(ENV_PREFIX)pip install -r requirements.txt
 
 .PHONY: clean
-clean:            ## Clean unused files.
+clean:            ## Clean working directory.
 	@dbt clean
 	@rm -rf datalake/bronze/*/*.parquet
 	@rm -rf datalake/silver/*/*.parquet
 	@rm -rf datalake/gold/*/*.parquet
+	@rm -rf datalake/dbt/test.duckdb
+	@rm -rf datalake/dbt/target
 	@rm -rf test.duckdb
 	@rm -rf __pycache__
 	@rm -rf .cache
@@ -46,16 +48,10 @@ clean:            ## Clean unused files.
 	@rm -rf build
 	@rm -rf dist
 	@rm -rf *.egg-info
-	@rm -rf htmlcov
-	@rm -rf .tox/
-	@rm -rf docs/_build
-	@rm -rf instance
-	@rm -rf .coverage
-	@rm -rf coverage.xml
 
 .PHONY: virtualenv
-virtualenv:       ## Create a virtual environment.
-	@echo "creating virtualenv ..."
+virtualenv:       ## Create virtual environment.
+	@echo "Creating virtualenv ..."
 	@rm -rf .venv
 	@python3 -m venv .venv
 	@./.venv/bin/pip install -U pip
@@ -65,16 +61,22 @@ virtualenv:       ## Create a virtual environment.
 
 .PHONY: docs
 docs:             ## Build the documentation.
-	@echo "building documentation ..."
+	@echo "Building documentation ..."
 	@dbt docs generate
 	@dbt docs serve
 
 .PHONY: run
-run:             ## Launch process.
-	@rm -rf test.duckdb
-	@echo "Process seeds"
+run:             ## Launch workflow.
+	@echo "Clean dbt folder ..."
+	@rm -rf datalake/dbt/test.duckdb
+	@rm -rf datalake/dbt/target
+	@echo "Process seeds ...\n"
 	@dbt seed
-	@echo "Execute and test bronze ..."
+	@echo "\nExecute and test bronze ...\n"
 	@dbt run --select models/bronze
 	@dbt test --select models/bronze
 	@dbt run
+	@echo "\nGenerate documentation ...\n"
+	@dbt docs generate
+	@mv target datalake/dbt/target
+	@chmod -R 777 datalake/dbt/target
